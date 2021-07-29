@@ -16,10 +16,11 @@ public class ContextController {
     @GetMapping("")
     public String echo(){
         String res = service.context();
-        boolean consumerSide = RpcContext.getContext().isConsumerSide();
-        String remoteHost = RpcContext.getContext().getRemoteHost();
-        String absolutePath = RpcContext.getContext().getUrl().getAbsolutePath();
-        System.out.println("是否为消费方:"+consumerSide+",调用服务地址:"+remoteHost+",全路径:"+absolutePath);
+        //contextFilter里，方法调用完后finally 会清空context信息
+//        boolean consumerSide = RpcContext.getContext().isConsumerSide();
+//        String remoteHost = RpcContext.getContext().getRemoteHost();
+//        String absolutePath = RpcContext.getContext().getUrl().getAbsolutePath();
+//        System.out.println("是否为消费方:"+consumerSide+",调用服务地址:"+remoteHost+",全路径:"+absolutePath);
         return res;
     }
 }
