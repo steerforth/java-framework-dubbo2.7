@@ -22,7 +22,7 @@ public class AsyncServiceImpl implements AsyncService {
      * @return
      */
     @Override
-    public CompletableFuture<String> async(String aa) {
+    public CompletableFuture<String> asyncFromProducer(String aa) {
         RpcContext context = RpcContext.getContext();
         log.info("1.-------begin");
         return CompletableFuture.supplyAsync(()->{
@@ -38,7 +38,7 @@ public class AsyncServiceImpl implements AsyncService {
     }
 
     @Override
-    public CompletableFuture<String> async2(String aa) {
+    public CompletableFuture<String> asyncFromProducer2(String aa) {
         final AsyncContext asyncContext = RpcContext.startAsync();
         new Thread(() -> {
             // 如果要使用上下文，则必须要放在第一句执行
@@ -52,5 +52,21 @@ public class AsyncServiceImpl implements AsyncService {
             asyncContext.write("Hello " + aa + ", response from provider.");
         }).start();
         return null;
+    }
+
+    @Override
+    public CompletableFuture<String> asyncFromCustomer(String aa) {
+        RpcContext context = RpcContext.getContext();
+        log.info("1.-------begin");
+        return CompletableFuture.supplyAsync(()->{
+            log.info("2.----{}",context.getRemoteHost());
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            log.info("3.----{}",context.getRemoteHost());
+            return "response from async";
+        });
     }
 }
