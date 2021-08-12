@@ -18,4 +18,5 @@ public class StubController {
     public String stub(){
         return stubServiceStub.stub();
     }
+
 }

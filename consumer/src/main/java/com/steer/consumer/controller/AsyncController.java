@@ -2,14 +2,12 @@ package com.steer.consumer.controller;
 
 import com.steer.extservice.service.AsyncService;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.rpc.RpcContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
