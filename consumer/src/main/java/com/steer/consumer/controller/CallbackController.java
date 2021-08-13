@@ -19,7 +19,7 @@ public class CallbackController implements Serializable {
     @DubboReference(version = "1.0.0",interfaceClass = CallbackService.class)
     private CallbackService service;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String callback(){
         service.addListener("aa.foo", new CallbackListener() {
             @Override
